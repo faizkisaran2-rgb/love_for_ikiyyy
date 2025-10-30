@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selamat Ulang Tahun 💖</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #2e004f, #0a001a);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 40px 60px;
+      border-radius: 25px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 20px rgba(255, 0, 150, 0.3);
+      position: relative;
+    }
+
+    .tag {
+      background: linear-gradient(90deg, #ff00a6, #ff7b00);
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 25px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #fff;
+    }
+
+    .highlight {
+      color: #ff70c6;
+    }
+
+    .message {
+      font-size: 15px;
+      margin-top: 10px;
+      color: #ffdaff;
+    }
+
+    .btns {
+      margin-top: 25px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    button {
+      background: linear-gradient(45deg, #ff0077, #ff00cc);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background: linear-gradient(45deg, #ff00cc, #ff0077);
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff85c0;
+      font-size: 18px;
+      animation: fall 5s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10%) scale(1); opacity: 1; }
+      100% { transform: translateY(110%) scale(0.5); opacity: 0; }
+    }
+
+    .hidden-message {
+      display: none;
+      margin-top: 25px;
+      font-size: 17px;
+      color: #ffd6f7;
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="tag">🎁 Surprise - Untukmu</div>
+    <h1>Selamat Ulang Tahun, <span class="highlight" id="nama">Sayang 💖</span></h1>
+    <p class="message">Semoga hari ini penuh kebahagiaan, cinta, dan tawa yang tak akan pernah berakhir 💕</p>
+    <div class="btns">
+      <button id="bukaUcapan">Buka Ucapan</button>
+      <button id="putarMusik">Putar Musik</button>
+    </div>
+    <p class="hidden-message" id="ucapan">
+      Aku cuma mau bilang... terima kasih udah lahir ke dunia ini 💫  
+      Kamu adalah hal terindah yang pernah aku temui 🌹  
+      Semoga semua impianmu tercapai, dan aku bisa terus ada di sisimu 💞
+    </p>
+  </div>
+
+  <audio id="lagu" src="wwd.mp3juice.blog - Stephen Sanchez - Until I Found You (Official Video) (320 KBps).mp3"></audio>
+
+  <div class="hearts" id="hearts"></div>
+
+  <script>
+    const bukaUcapan = document.getElementById('bukaUcapan');
+    const putarMusik = document.getElementById('putarMusik');
+    const ucapan = document.getElementById('ucapan');
+    const lagu = document.getElementById('lagu');
+    const hearts = document.getElementById('hearts');
+
+    bukaUcapan.addEventListener('click', () => {
+      ucapan.style.display = 'block';
+      for (let i = 0; i < 20; i++) {
+        buatHati();
+      }
+    });
+
+    putarMusik.addEventListener('click', () => {
+      if (lagu.paused) {
+        lagu.play();
+        putarMusik.textContent = 'Hentikan Musik';
+      } else {
+        lagu.pause();
+        putarMusik.textContent = 'Putar Musik';
+      }
+    });
+
+    function buatHati() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '💖';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 3 + Math.random() * 2 + 's';
+      hearts.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
